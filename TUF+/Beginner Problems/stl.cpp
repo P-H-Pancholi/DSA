@@ -95,10 +95,110 @@ void explainStack() {
     st.pop(); // deletes 1
 }
 
+void explainQueue() {
+    // FIFO
+    queue<int> q;
+    q.push(21);
+    q.push(24);
+    q.push(241);
+    q.push(289);
+    q.push(218);
+    q.push(3);
+
+    while(q.empty() == false) {
+        cout << q.front() << " ";
+        q.pop();
+    }
+    cout << endl;
+}
+
+void explainPQ() {
+    //stores the highest element in top.
+    priority_queue<int> pq;
+    // for storing smallest element use :
+    // priority_queue<int, vector<int>, greater<int>> pq;
+    // TODO : Understand the logic behind
+    pq.push(5);
+    pq.push(2);
+    pq.push(10);
+    pq.push(8);
+
+    // 10 8 5 2
+    while ( pq.empty() == false)
+    {
+        cout << pq.top() << " ";
+        pq.pop();
+    }
+    cout << endl;
+    
+}
+
+void explainSet() {
+    // only stores unique element & in ascending order
+
+    set<int> st;
+    st.insert(2);
+    st.insert(21);
+    st.insert(21);
+    st.insert(21);
+    st.insert(21);
+    st.insert(21);
+    st.insert(21);
+    st.insert(12);
+
+    for(auto it : st){
+        cout << it << " ";
+    }
+    cout << endl;
+
+    auto it = st.find(12);
+    if ( it != st.end()){
+        cout << *it << endl;
+    }
+
+    st.insert(211);
+    st.insert(213);
+    // 2 12 21 211 213
+    auto it1 = st.lower_bound(22); // returns the element if present, otherwise first number that is greater than element
+    cout << *it1 << endl; // 211
+
+    auto it2 = st.upper_bound(12); // returns first greater than element, even if element is present.
+     cout << *it2 << endl; // 21
+
+}
+
+void explainUnorderedSet() {
+    unordered_set<int> st;
+    // stores unique element, elements are not sorted.
+    // has better time complexity.
+
+    st.insert(1);
+    st.insert(2);
+    st.insert(1);
+    st.insert(1);
+    st.insert(11);
+    st.insert(11);
+    st.insert(11);
+    st.insert(12);
+    st.insert(12);
+    st.insert(12);
+
+    // 12 11 2 1 
+    for(auto i : st) {
+        cout << i << " ";
+    }
+    cout << endl;
+
+}
+
 int main() {
     explainPair();
     explainVector();
     explainList();
     explainStack();
+    explainQueue();
+    explainPQ();
+    explainSet();
+    explainUnorderedSet();
     return 0;
 }
