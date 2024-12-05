@@ -171,7 +171,7 @@ void explainUnorderedSet() {
     unordered_set<int> st;
     // stores unique element, elements are not sorted.
     // has better time complexity.
-
+    // All functionality of set applicable, except lower_bound & upper_bound.
     st.insert(1);
     st.insert(2);
     st.insert(1);
@@ -188,7 +188,37 @@ void explainUnorderedSet() {
         cout << i << " ";
     }
     cout << endl;
+}
 
+void explainMap() {
+    // stores element as key value pair.
+    // key is sorted in map & not sorted in unordered_map.
+    map<int, string> mpp;
+    mpp[1] = "abcd";
+    mpp[2] = "cat";
+    mpp[3] = "dog";
+    mpp.insert({4, "fox"});
+
+    for(auto it : mpp){
+        cout << it.first << "->" << it.second << endl;
+    }
+}
+
+void explainMultiMap() {
+    multimap<int, char> mmp;
+    mmp.insert({3, 'c'});
+    mmp.insert({1, 'a'}); 
+    mmp.insert({1, 'a'});
+    mmp.insert({1, 'b'});
+    mmp.insert({1, 'b'});
+    mmp.insert({2, 'a'});
+    mmp.insert({2, 'b'});
+    mmp.insert({2, 'a'});
+    mmp.insert({2, 'b'});
+    auto it = mmp.equal_range(2); // finds the subsquence having key = 2
+    for(auto i = it.first; i != it.second; i++){
+        cout << (*i).first << "->" << (*i).second << endl;
+    }
 }
 
 int main() {
@@ -200,5 +230,7 @@ int main() {
     explainPQ();
     explainSet();
     explainUnorderedSet();
+    explainMap();
+    explainMultiMap();
     return 0;
 }
