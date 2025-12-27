@@ -1,0 +1,66 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+struct ListNode
+{
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+
+void reorderList(ListNode *head)
+{
+    ListNode *slow = head;
+    ListNode *fast = head->next;
+    while (fast && fast->next)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    ListNode *prev = nullptr;
+    ListNode* curr = slow -> next;
+    slow->next = nullptr;
+    while (curr)
+    {
+        ListNode *temp = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = temp;
+    }
+    ListNode* l1 = head;
+    ListNode* l2 = prev;
+    while(l1 && l2){
+        ListNode* temp1 = l1->next;
+        ListNode* temp2 = l2->next;
+        l1->next =  l2;
+        l2->next = temp1;
+        l1 = temp1; l2 = temp2;
+    }
+}
+
+int main(){
+    ListNode* temp5 = new ListNode(10);
+    ListNode* temp = new ListNode(8, temp5);
+    ListNode* temp1 = new ListNode(6, temp);
+    ListNode* temp2 = new ListNode(4, temp1);
+    ListNode* head = new ListNode(2, temp2);
+    reorderList(head);
+    while(head){
+        cout << head->val << " ";
+        head = head->next;
+    }
+    cout << endl;
+    return 0;
+}
